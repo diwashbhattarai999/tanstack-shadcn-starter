@@ -12,7 +12,10 @@
     "check": "biome check"
   },
   "dependencies": {
+    "@base-ui/react": "^1.1.0",
+    "@fontsource-variable/noto-sans": "^5.2.10",
     "@t3-oss/env-core": "^0.13.8",
+    "@tabler/icons-react": "^3.36.1",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/react-devtools": "^0.7.0",
     "@tanstack/react-query": "^5.66.5",
@@ -27,6 +30,7 @@
     "lucide-react": "^0.544.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "shadcn": "^3.7.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.6",
     "tw-animate-css": "^1.3.6",
