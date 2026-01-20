@@ -5,6 +5,7 @@
   "type": "module",
   "license": "MIT",
   "author": "Diwash Bhattarai <diwashb999@gmail.com>",
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
