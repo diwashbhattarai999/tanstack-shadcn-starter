@@ -93,9 +93,12 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 
+import { ModeToggle } from "./shared/theme-toggle";
+
 export function ComponentExample() {
 	return (
 		<ExampleWrapper>
+			<ModeToggle />
 			<CardExample />
 			<FormExample />
 		</ExampleWrapper>

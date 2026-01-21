@@ -6,6 +6,9 @@ import {
 	TanstackQueryProvider,
 } from "@/integrations/tanstack-query/root-provider";
 
+import { ThemeProvider } from "./components/providers/theme-providers";
+import { STORAGE_KEYS } from "./configs/storage";
+import { DEFAULT_THEME } from "./configs/theme";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
@@ -21,7 +24,12 @@ export const getRouter = () => {
 		Wrap: (props: { children: React.ReactNode }) => {
 			return (
 				<TanstackQueryProvider {...rqContext}>
-					{props.children}
+					<ThemeProvider
+						defaultTheme={DEFAULT_THEME}
+						storageKey={STORAGE_KEYS.THEME}
+					>
+						{props.children}
+					</ThemeProvider>
 				</TanstackQueryProvider>
 			);
 		},
