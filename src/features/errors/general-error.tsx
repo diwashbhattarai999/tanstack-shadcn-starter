@@ -1,8 +1,8 @@
 import { useNavigate, useRouter } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { m } from "@/paraglide/messages";
 
 type GeneralErrorProps = React.HTMLAttributes<HTMLDivElement> & {
 	minimal?: boolean;
@@ -12,8 +12,6 @@ export function GeneralError({
 	className,
 	minimal = false,
 }: GeneralErrorProps) {
-	const { t } = useTranslation("error");
-
 	const navigate = useNavigate();
 	const { history } = useRouter();
 
@@ -22,20 +20,22 @@ export function GeneralError({
 			<div className="m-auto flex h-full w-full flex-col items-center justify-center gap-2">
 				{!minimal && (
 					<h1 className="font-bold text-[7rem] leading-tight">
-						{t("500.errorCode")}
+						{m["internal_server_error.errorCode"]()}
 					</h1>
 				)}
-				<span className="font-medium">{t("500.title")}</span>
+				<span className="font-medium">
+					{m["internal_server_error.title"]()}
+				</span>
 				<p className="text-center text-muted-foreground">
-					{t("500.description")}
+					{m["internal_server_error.description"]()}
 				</p>
 				{!minimal && (
 					<div className="mt-6 flex gap-4">
 						<Button onClick={() => history.go(-1)} variant="outline">
-							{t("500.goBack")}
+							{m["internal_server_error.goBack"]()}
 						</Button>
 						<Button onClick={() => navigate({ to: "/" })}>
-							{t("500.backToHome")}
+							{m["internal_server_error.backToHome"]()}
 						</Button>
 					</div>
 				)}

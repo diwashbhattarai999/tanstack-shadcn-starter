@@ -10,10 +10,11 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { APP_CONFIG } from "@/configs/app";
 import { FontProvider } from "@/contexts/font-provider";
-import { LanguageProvider } from "@/contexts/language-provider";
 import { ThemeProvider } from "@/contexts/theme-providers";
 import { env } from "@/env";
 import appCss from "@/styles/base.css?url";
+
+import { getLocale } from "../paraglide/runtime.js";
 
 interface MyRouterContext {
 	queryClient: QueryClient;
@@ -121,17 +122,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
+		<html lang={getLocale()}>
 			<head>
 				<HeadContent />
 			</head>
 			<body>
 				<ThemeProvider>
 					<FontProvider>
-						<LanguageProvider>
-							{/* Application Content */}
-							{children}
-						</LanguageProvider>
+						{/* Application Content */}
+						{children}
 					</FontProvider>
 				</ThemeProvider>
 

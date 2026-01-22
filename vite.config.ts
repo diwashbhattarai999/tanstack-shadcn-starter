@@ -1,3 +1,4 @@
+import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
@@ -22,15 +23,27 @@ export default defineConfig(({ mode }) => {
 	return {
 		/**
 		 * Vite plugins.
-		 *
-		 * Order matters:
-		 * - Devtools first for debugging support
-		 * - TS config paths for alias resolution
-		 * - Tailwind for CSS processing
-		 * - TanStack Start for routing & SSR
-		 * - React last to apply JSX/Babel transforms
 		 */
 		plugins: [
+			// Paraglide integration for inlang localization
+			paraglideVitePlugin({
+				project: "./project.inlang",
+				outdir: "./src/paraglide",
+				outputStructure: "message-modules",
+				cookieName: "PARAGLIDE_LOCALE",
+				strategy: ["localStorage", "cookie", "preferredLanguage", "baseLocale"],
+				urlPatterns: [
+					{
+						pattern: "/:path(.*)?",
+						localized: [
+							["en", "/:path(.*)?"],
+							["ne", "/:path(.*)?"],
+						],
+					},
+				],
+			}),
+
+			// TanStack Devtools for debugging
 			devtools(),
 
 			// Enables path aliases from tsconfig.json

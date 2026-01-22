@@ -15,7 +15,8 @@
     "lint:fix": "ultracite fix",
     "commit": "commit",
     "type-check": "tsc -b",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "machine-translate": "inlang machine translate --project project.inlang"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
@@ -34,7 +35,6 @@
     "axios": "^1.13.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "i18next-resources-to-backend": "^1.2.1",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.544.0",
     "next-themes": "^0.4.6",
@@ -65,16 +65,14 @@
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
     "babel-plugin-react-compiler": "^1.0.0",
-    "i18next": "^25.8.0",
-    "i18next-browser-languagedetector": "^8.2.0",
-    "i18next-http-backend": "^3.0.2",
     "jsdom": "^27.0.0",
     "lefthook": "^2.0.15",
-    "react-i18next": "^16.5.3",
     "typescript": "^5.7.2",
     "ultracite": "7.0.11",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.1.0",
+    "@inlang/paraglide-js": "^2.9.1",
+    "@inlang/cli": "^3.0.0"
   }
 }

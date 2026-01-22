@@ -7,7 +7,7 @@ import {
 } from "@/components/providers/tanstack-query-provider";
 import { NotFoundError } from "@/features/errors/not-found-error";
 
-// Import the generated route tree
+import { deLocalizeUrl, localizeUrl } from "./paraglide/runtime.js";
 import { routeTree } from "./routeTree.gen";
 
 /**
@@ -71,6 +71,11 @@ export const getRouter = (): AnyRouter => {
 		 * Global fallback component rendered when no route matches.
 		 */
 		defaultNotFoundComponent: () => <NotFoundError />,
+
+		rewrite: {
+			input: ({ url }) => deLocalizeUrl(url),
+			output: ({ url }) => localizeUrl(url),
+		},
 	});
 
 	/**

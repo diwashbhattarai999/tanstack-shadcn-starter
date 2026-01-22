@@ -1,5 +1,4 @@
 import { env } from "@/env";
-import type { Language } from "@/i18n";
 
 import type { UserTheme } from "./themes";
 
@@ -19,7 +18,7 @@ export interface AppConfig {
 	};
 	manifest: string;
 	defaultTheme: UserTheme;
-	defaultLanguage: Language;
+	defaultLanguage: string;
 }
 
 export const APP_CONFIG: AppConfig = {

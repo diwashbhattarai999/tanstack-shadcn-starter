@@ -1,10 +1,9 @@
 import { useNavigate, useRouter } from "@tanstack/react-router";
-import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
+import { m } from "@/paraglide/messages";
 
 export function UnauthorisedError() {
-	const { t } = useTranslation("error");
 	const navigate = useNavigate();
 	const { history } = useRouter();
 
@@ -12,18 +11,18 @@ export function UnauthorisedError() {
 		<div className="h-svh">
 			<div className="m-auto flex h-full w-full flex-col items-center justify-center gap-2">
 				<h1 className="font-bold text-[7rem] leading-tight">
-					{t("401.errorCode")}
+					{m["unauthorized.errorCode"]()}
 				</h1>
-				<span className="font-medium">{t("401.title")}</span>
+				<span className="font-medium">{m["unauthorized.title"]()}</span>
 				<p className="text-center text-muted-foreground">
-					{t("401.description")}
+					{m["unauthorized.description"]()}
 				</p>
 				<div className="mt-6 flex gap-4">
 					<Button onClick={() => history.go(-1)} variant="outline">
-						{t("401.goBack")}
+						{m["unauthorized.goBack"]()}
 					</Button>
 					<Button onClick={() => navigate({ to: "/" })}>
-						{t("401.backToHome")}
+						{m["unauthorized.backToHome"]()}
 					</Button>
 				</div>
 			</div>

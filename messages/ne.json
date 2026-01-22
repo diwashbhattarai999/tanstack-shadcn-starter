@@ -1,32 +1,43 @@
 {
-  "500": {
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "example_message": "नमस्ते {username}",
+  "server_message": "सर्भर सन्देश {emoji}",
+  "about_message": "हाम्रो बारेमा",
+  "home_page": "गृह पृष्ठ",
+  "about_page": "हाम्रो बारेमा",
+
+  "internal_server_error": {
     "errorCode": "५००",
     "title": "ओह! केहि गलत भयो :)",
     "description": "असुविधाको लागि माफ गर्नुहोस्। कृपया पछि प्रयास गर्नुहोस्।",
     "goBack": "फिर्ता जानुहोस्",
     "backToHome": "गृह पृष्ठमा फर्कनुहोस्"
   },
-  "503": {
+
+  "service_unavailable": {
     "errorCode": "५०३",
     "title": "वेबसाइट रखरखाव अन्तर्गत छ!",
     "description": "साइट यस समय उपलब्ध छैन। हामी शीघ्रै अनलाइन हुनेछौं।",
     "learnMore": "अधिक जानुहोस्"
   },
-  "403": {
+
+  "forbidden": {
     "errorCode": "४०३",
     "title": "पहुंच निषेध",
     "description": "यो संसाधन हेर्न तपाईंसँग आवश्यक अनुमति छैन।",
     "goBack": "फिर्ता जानुहोस्",
     "backToHome": "गृह पृष्ठमा फर्कनुहोस्"
   },
-  "401": {
+
+  "unauthorized": {
     "errorCode": "४०१",
     "title": "अनुमति नदिइएको पहुंच",
     "description": "यो संसाधन पहुँच गर्न कृपया सही क्रेडेनशियलहरूसँग लगइन गर्नुहोस्।",
     "goBack": "फिर्ता जानुहोस्",
     "backToHome": "गृह पृष्ठमा फर्कनुहोस्"
   },
-  "404": {
+
+  "not_found": {
     "errorCode": "४०४",
     "title": "पृष्ठ भेटिएन",
     "description": "माफ गर्नुहोस्, हामीले तपाईंले खोज्दै गरेको पृष्ठ फेला पाउन सकेनौं। यो सायद सारिएको वा मेटिएको हुन सक्छ।",

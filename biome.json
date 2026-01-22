@@ -14,7 +14,9 @@
       "**/vite.config.js",
       "!**/src/routeTree.gen.ts",
       "!**/src/base.css",
-      "!**/src/theme.css"
+      "!**/src/theme.css",
+      "!**/src/paraglide/**/*",
+      "!project.inlang"
     ]
   },
   "css": {
