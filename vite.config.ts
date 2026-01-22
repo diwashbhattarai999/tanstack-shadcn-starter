@@ -2,24 +2,88 @@ import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import viteTsConfigPaths from "vite-tsconfig-paths";
 
-const config = defineConfig({
-	plugins: [
-		devtools(),
-		// this is the plugin that enables path aliases
-		viteTsConfigPaths({
-			projects: ["./tsconfig.json"],
-		}),
-		tailwindcss(),
-		tanstackStart(),
-		viteReact({
-			babel: {
-				plugins: ["babel-plugin-react-compiler"],
-			},
-		}),
-	],
-});
+/**
+ * Vite configuration for the application.
+ */
+export default defineConfig(({ mode }) => {
+	/**
+	 * Load environment variables for the current mode.
+	 * Only variables prefixed with `VITE_` are exposed.
+	 */
+	const env = loadEnv(mode, process.cwd(), "VITE_");
 
-export default config;
+	const DEV_PORT = Number(env.VITE_DEV_PORT) || 5173;
+	const PREVIEW_PORT = Number(env.VITE_PREVIEW_PORT) || 4173;
+	const HOST = env.VITE_HOST || "localhost";
+
+	return {
+		/**
+		 * Vite plugins.
+		 *
+		 * Order matters:
+		 * - Devtools first for debugging support
+		 * - TS config paths for alias resolution
+		 * - Tailwind for CSS processing
+		 * - TanStack Start for routing & SSR
+		 * - React last to apply JSX/Babel transforms
+		 */
+		plugins: [
+			devtools(),
+
+			// Enables path aliases from tsconfig.json
+			viteTsConfigPaths({
+				projects: ["./tsconfig.json"],
+			}),
+
+			// Tailwind CSS integration
+			tailwindcss(),
+
+			// TanStack Start plugin (routing + SSR)
+			tanstackStart(),
+
+			// React + React Compiler
+			viteReact({
+				babel: {
+					plugins: ["babel-plugin-react-compiler"],
+				},
+			}),
+		],
+
+		/**
+		 * Development server configuration.
+		 */
+		server: {
+			host: HOST,
+			port: DEV_PORT,
+			strictPort: true,
+			// open: true,
+		},
+
+		/**
+		 * Preview server configuration (production build preview).
+		 */
+		preview: {
+			host: HOST,
+			port: PREVIEW_PORT,
+			strictPort: true,
+		},
+
+		/**
+		 * Build configuration.
+		 */
+		build: {
+			sourcemap: mode !== "production",
+			target: "esnext",
+		},
+
+		/**
+		 * Dependency optimization.
+		 */
+		optimizeDeps: {
+			include: ["react", "react-dom"],
+		},
+	};
+});

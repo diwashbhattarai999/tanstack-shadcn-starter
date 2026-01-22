@@ -1,0 +1,36 @@
+{
+  "500": {
+    "errorCode": "500",
+    "title": "Oops! Something went wrong :)",
+    "description": "We apologize for the inconvenience. Please try again later.",
+    "goBack": "Go Back",
+    "backToHome": "Back to Home"
+  },
+  "503": {
+    "errorCode": "503",
+    "title": "Website is under maintenance!",
+    "description": "The site is not available at the moment. We'll be back online shortly.",
+    "learnMore": "Learn more"
+  },
+  "403": {
+    "errorCode": "403",
+    "title": "Access Forbidden",
+    "description": "You don't have necessary permission to view this resource.",
+    "goBack": "Go Back",
+    "backToHome": "Back to Home"
+  },
+  "401": {
+    "errorCode": "401",
+    "title": "Unauthorized Access",
+    "description": "Please log in with the appropriate credentials to access this resource.",
+    "goBack": "Go Back",
+    "backToHome": "Back to Home"
+  },
+  "404": {
+    "errorCode": "404",
+    "title": "Page Not Found",
+    "description": "Sorry, we couldn't find the page you're looking for. It might have been moved or deleted.",
+    "goBack": "Go Back",
+    "backToHome": "Back to Home"
+  }
+}

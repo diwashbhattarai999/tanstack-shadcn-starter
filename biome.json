@@ -13,7 +13,8 @@
       "**/index.html",
       "**/vite.config.js",
       "!**/src/routeTree.gen.ts",
-      "!**/src/styles.css"
+      "!**/src/base.css",
+      "!**/src/theme.css"
     ]
   },
   "css": {
@@ -51,7 +52,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "style": {
+        "useBlockStatements": "off"
+      }
     }
   },
   "javascript": {
