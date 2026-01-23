@@ -8,7 +8,7 @@ import { AxiosError } from "axios";
 import { toast } from "sonner";
 
 import { handleServerError } from "@/lib/handle-server-error";
-import { useAuthStore } from "@/store/auth-store";
+import { useAuthStore } from "@/stores/auth-store";
 
 export function getQueryClient(router: AnyRouter): {
 	queryClient: QueryClient;
