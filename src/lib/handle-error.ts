@@ -1,3 +1,4 @@
+import { isAxiosError } from "axios";
 import type { FieldValues, Path, UseFormReturn } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -16,16 +17,6 @@ interface ApiErrorResponse {
 interface ApiFieldError {
 	key: string[];
 	message: string[];
-}
-
-/**
- * Minimal Axios-like error shape.
- * Avoids importing Axios types directly.
- */
-interface HttpError<T = unknown> {
-	response?: {
-		data?: T;
-	};
 }
 
 /**
@@ -64,12 +55,17 @@ function formHasField<T extends FieldValues>(
  * @param form - Optional React Hook Form instance for field error mapping
  */
 export function handleApiError<T extends FieldValues>(
-	error: HttpError<ApiErrorResponse>,
+	error: unknown,
 	form?: UseFormReturn<T>
 ): void {
 	console.error(error);
 
-	const responseData = error.response?.data;
+	if (!isAxiosError(error)) {
+		toast.error("Something went wrong. Please try again.");
+		return;
+	}
+
+	const responseData: ApiErrorResponse | undefined = error.response?.data;
 
 	// No structured error response → fallback toast
 	if (!responseData) {

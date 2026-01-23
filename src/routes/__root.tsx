@@ -9,8 +9,6 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { APP_CONFIG } from "@/configs/app";
-import { DirectionProvider } from "@/contexts/direction-provider.js";
-import { FontProvider } from "@/contexts/font-provider";
 import { ThemeProvider } from "@/contexts/theme-providers";
 import { env } from "@/env";
 import appCss from "@/styles/base.css?url";
@@ -130,12 +128,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				{/* Context Providers */}
 				<ThemeProvider>
-					<FontProvider>
-						<DirectionProvider>
-							{/*  Main app content */}
-							{children}
-						</DirectionProvider>
-					</FontProvider>
+					{/*  Main app content */}
+					{children}
 				</ThemeProvider>
 
 				{/* Devtools - only in development mode */}
