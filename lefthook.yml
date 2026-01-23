@@ -1,9 +1,7 @@
 pre-commit:
   commands:
     lint-fix:
-      glob: "*.{js,ts,tsx,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
-      run: pnpm lint:fix {staged_files}
-      stage_fixed: true
+      run: pnpm lint:fix
 
 pre-push:
   commands:

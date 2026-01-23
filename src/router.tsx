@@ -7,6 +7,7 @@ import {
 } from "@/components/providers/tanstack-query-provider";
 import { NotFoundError } from "@/features/errors/not-found-error";
 
+import { GeneralError } from "./features/errors/general-error.js";
 import { deLocalizeUrl, localizeUrl } from "./paraglide/runtime.js";
 import { routeTree } from "./routeTree.gen";
 
@@ -19,6 +20,8 @@ import { routeTree } from "./routeTree.gen";
  * - Injects the QueryClient into the router context
  * - Integrates TanStack Router with React Query for SSR
  * - Defines a global 404 (Not Found) fallback
+ * - Defines a global error fallback component
+ * - Configures URL localization handlers
  *
  * This function must be called once during application bootstrap.
  *
@@ -72,6 +75,14 @@ export const getRouter = (): AnyRouter => {
 		 */
 		defaultNotFoundComponent: () => <NotFoundError />,
 
+		/**
+		 * Global fallback component for unhandled errors.
+		 */
+		defaultErrorComponent: () => <GeneralError />,
+
+		/**
+		 * URL localization handlers to manage locale prefixes.
+		 */
 		rewrite: {
 			input: ({ url }) => deLocalizeUrl(url),
 			output: ({ url }) => localizeUrl(url),
