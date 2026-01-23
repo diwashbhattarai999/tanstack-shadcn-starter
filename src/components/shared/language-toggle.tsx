@@ -1,50 +1,48 @@
-// import {
-// 	Select,
-// 	SelectContent,
-// 	SelectGroup,
-// 	SelectItem,
-// 	SelectLabel,
-// 	SelectTrigger,
-// 	SelectValue,
-// } from "@/components/ui/select";
-// import { useLanguage } from "@/contexts/language-provider";
-// import type { Language } from "@/i18n";
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { getLanguageLabel, type Language } from "@/configs/languages";
+import { getLocale, locales, setLocale } from "@/paraglide/runtime";
 
-// /**
-//  * LanguageToggle component to switch between different languages.
-//  *
-//  * This component uses the Popover component to allow users to choose a language.
-//  * It utilizes the useLanguage hook to access the current language and a function to change it.
-//  */
-// export default function LanguageToggle() {
-// 	// Get the current language, function to set language, available languages, and display names from the context
-// 	const { language, setLanguage, getAvailableLanguages } = useLanguage();
+/**
+ * LanguageToggle component to switch between different languages using paraglide runtime.
+ */
+export default function LanguageToggle() {
+	const currentLocale = getLocale();
+	const items = locales.map((locale) => ({
+		value: locale,
+		label: getLanguageLabel(locale),
+	}));
 
-// 	const handleLanguageChange = (newLanguage: Language | null) => {
-// 		if (newLanguage) setLanguage(newLanguage);
-// 		else return;
-// 	};
+	const handleLanguageChange = (newLocale: Language | null) => {
+		if (newLocale && newLocale !== currentLocale) setLocale(newLocale);
+	};
 
-// 	const items = getAvailableLanguages().map(({ locale, name }) => ({
-// 		value: locale,
-// 		label: name,
-// 	}));
-
-// 	return (
-// 		<Select items={items} onValueChange={handleLanguageChange} value={language}>
-// 			<SelectTrigger className="w-full max-w-48">
-// 				<SelectValue />
-// 			</SelectTrigger>
-// 			<SelectContent>
-// 				<SelectGroup>
-// 					<SelectLabel>Languages</SelectLabel>
-// 					{items.map((item) => (
-// 						<SelectItem key={item.value} value={item.value}>
-// 							{item.label}
-// 						</SelectItem>
-// 					))}
-// 				</SelectGroup>
-// 			</SelectContent>
-// 		</Select>
-// 	);
-// }
+	return (
+		<Select
+			items={items}
+			onValueChange={handleLanguageChange}
+			value={currentLocale}
+		>
+			<SelectTrigger className="w-full max-w-48">
+				<SelectValue />
+			</SelectTrigger>
+			<SelectContent>
+				<SelectGroup>
+					<SelectLabel>Languages</SelectLabel>
+					{items.map((item) => (
+						<SelectItem key={item.value} value={item.value}>
+							{item.label}
+						</SelectItem>
+					))}
+				</SelectGroup>
+			</SelectContent>
+		</Select>
+	);
+}

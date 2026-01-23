@@ -18,7 +18,6 @@ export interface AppConfig {
 	};
 	manifest: string;
 	defaultTheme: UserTheme;
-	defaultLanguage: string;
 }
 
 export const APP_CONFIG: AppConfig = {
@@ -37,7 +36,6 @@ export const APP_CONFIG: AppConfig = {
 	},
 	manifest: "/manifest.json",
 	defaultTheme: "system",
-	defaultLanguage: "en",
 };
 
 export type { AppConfig as TAppConfig };
