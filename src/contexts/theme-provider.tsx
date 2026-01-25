@@ -89,6 +89,7 @@ interface ThemeContextProps {
 	userTheme: UserTheme;
 	appTheme: AppTheme;
 	setTheme: (theme: UserTheme) => void;
+	resetTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
@@ -116,12 +117,18 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 		handleThemeChange(validatedTheme);
 	};
 
+	const resetTheme = () => {
+		setTheme(APP_CONFIG.defaultTheme);
+	};
+
 	return (
-		<ThemeContext value={{ userTheme, appTheme, setTheme }}>
+		<ThemeContext.Provider
+			value={{ userTheme, appTheme, setTheme, resetTheme }}
+		>
 			{/** biome-ignore lint/correctness/noChildrenProp: ScriptOnce requires children prop */}
 			<ScriptOnce children={themeScript} />
 			{children}
-		</ThemeContext>
+		</ThemeContext.Provider>
 	);
 }
 

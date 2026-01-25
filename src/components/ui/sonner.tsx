@@ -7,7 +7,7 @@ import {
 } from "@tabler/icons-react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
-import { useTheme } from "@/contexts/theme-providers";
+import { useTheme } from "@/contexts/theme-provider";
 
 const Toaster = ({ ...props }: ToasterProps) => {
 	const { userTheme = "system" } = useTheme();

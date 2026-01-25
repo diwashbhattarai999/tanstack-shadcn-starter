@@ -8,9 +8,11 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { NavigationProgress } from "@/components/shared/navigation-progress.js";
 import { Toaster } from "@/components/ui/sonner.js";
 import { APP_CONFIG } from "@/configs/app";
-import { ThemeProvider } from "@/contexts/theme-providers";
+import { FontProvider } from "@/contexts/font-provider.js";
+import { ThemeProvider } from "@/contexts/theme-provider.js";
 import { env } from "@/env";
 import appCss from "@/styles/base.css?url";
 
@@ -129,10 +131,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<body>
 				{/* Context Providers */}
 				<ThemeProvider>
-					{/*  Main app content */}
-					{children}
+					<FontProvider>
+						<NavigationProgress />
 
-					<Toaster richColors />
+						{/*  Main app content */}
+						{children}
+
+						<Toaster richColors />
+					</FontProvider>
 				</ThemeProvider>
 
 				{/* Devtools - only in development mode */}
