@@ -13,16 +13,6 @@ import { routeTree } from "./routeTree.gen";
 
 /**
  * Creates and configures the TanStack Router instance for the application.
- *
- * Responsibilities:
- * - Initializes the router with the generated route tree
- * - Sets up global providers (React Query, Theme, Font, Language)
- * - Injects the QueryClient into the router context
- * - Integrates TanStack Router with React Query for SSR
- * - Defines a global 404 (Not Found) fallback
- * - Defines a global error fallback component
- * - Configures URL localization handlers
- *
  * This function must be called once during application bootstrap.
  *
  * @returns {AnyRouter}
@@ -49,18 +39,22 @@ export const getRouter = (): AnyRouter => {
 		defaultPreload: "intent",
 
 		/**
+		 * Disable stale time for preloaded routes to always fetch fresh data.
+		 */
+		defaultPreloadStaleTime: 0,
+
+		/**
+		 * Enable structural sharing to optimize re-renders.
+		 */
+		defaultStructuralSharing: true,
+
+		/**
 		 * Enables scroll position restoration on navigation.
 		 */
 		scrollRestoration: true,
 
 		/**
 		 * Wraps the entire application with global providers.
-		 *
-		 * Order is important:
-		 * - React Query (data fetching & caching)
-		 * - Theme (color mode persistence)
-		 * - Font (font family management)
-		 * - Language (i18n)
 		 */
 		Wrap: (props: { children: React.ReactNode }) => {
 			return (

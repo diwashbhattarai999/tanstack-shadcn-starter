@@ -1,61 +1,51 @@
-import { Monitor, Moon, Sun } from "lucide-react";
+import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
+	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
-	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/theme-providers";
-import { cn } from "@/lib/utils";
-
-const themeConfig = {
-	light: { icon: Sun, label: "Light" },
-	dark: { icon: Moon, label: "Dark" },
-	system: { icon: Monitor, label: "System" },
-};
+import { useIsMounted } from "@/hooks/use-is-mounted";
 
 export function ThemeToggle() {
 	const { userTheme, setTheme } = useTheme();
+	const isMounted = useIsMounted();
 
 	return (
 		<DropdownMenu>
-			<DropdownMenuTrigger
-				render={
-					<Button size="icon" variant="outline">
-						<Sun
-							className={cn("hidden h-[1.2rem] w-[1.2rem] transition-all", {
-								inline: userTheme === "light",
-							})}
-						/>
+			<DropdownMenuTrigger render={<Button size="icon" variant="outline" />}>
+				{isMounted && (
+					<>
+						<Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+						<Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+					</>
+				)}
 
-						<Moon
-							className={cn("hidden h-[1.2rem] w-[1.2rem] transition-all", {
-								inline: userTheme === "dark",
-							})}
-						/>
+				<span className="sr-only">Toggle theme</span>
+			</DropdownMenuTrigger>
 
-						<Monitor
-							className={cn("hidden h-[1.2rem] w-[1.2rem] transition-all", {
-								inline: userTheme === "system",
-							})}
-						/>
-
-						<span className="sr-only">Toggle theme</span>
-					</Button>
-				}
-			/>
 			<DropdownMenuContent align="center">
-				<DropdownMenuItem onClick={() => setTheme("light")}>
-					{themeConfig.light.label}
-				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("dark")}>
-					{themeConfig.dark.label}
-				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => setTheme("system")}>
-					{themeConfig.system.label}
-				</DropdownMenuItem>
+				<DropdownMenuCheckboxItem
+					checked={userTheme === "light"}
+					onCheckedChange={() => setTheme("light")}
+				>
+					Light
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
+					checked={userTheme === "dark"}
+					onCheckedChange={() => setTheme("dark")}
+				>
+					Dark
+				</DropdownMenuCheckboxItem>
+				<DropdownMenuCheckboxItem
+					checked={userTheme === "system"}
+					onCheckedChange={() => setTheme("system")}
+				>
+					System
+				</DropdownMenuCheckboxItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);

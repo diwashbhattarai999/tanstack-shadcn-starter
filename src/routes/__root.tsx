@@ -8,6 +8,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
+import { Toaster } from "@/components/ui/sonner.js";
 import { APP_CONFIG } from "@/configs/app";
 import { ThemeProvider } from "@/contexts/theme-providers";
 import { env } from "@/env";
@@ -121,7 +122,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang={getLocale()}>
+		<html lang={getLocale()} suppressHydrationWarning>
 			<head>
 				<HeadContent />
 			</head>
@@ -130,6 +131,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<ThemeProvider>
 					{/*  Main app content */}
 					{children}
+
+					<Toaster richColors />
 				</ThemeProvider>
 
 				{/* Devtools - only in development mode */}
